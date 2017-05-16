@@ -48,7 +48,7 @@
                 <br><span class="h4"><b>Customer Comments &nbsp; </b></span>
                     <label for="sort">Sort by:</label>
                     <input type="text" ng-model="dishCtrl.sortby">
-                <div ng-repeat="comment in dishCtrl.dish.comments | orderBy: dishCtrl.sortBy">
+                <div ng-repeat="comment in dishCtrl.dish.comments | orderBy:dishCtrl.sortby">
                         <blockquote>
                             <p>{{comment.rating}} Stars </p>
                             <p>{{comment.comment}} </p>
