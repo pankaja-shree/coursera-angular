@@ -8,11 +8,20 @@ angular.module('confusionApp')
             $scope.filtText = '';
             $scope.showDetails = false;
 
-            $scope.showMenu = "false";
+            $scope.showMenu = false;
             $scope.message = "Loading ...";
 
             //using $resource module, $scope.dishes will be empty untill the data is fetched from server. No need of using promises. 
-            $scope.dishes= menuFactory.getDishes().query();
+            ///query() takes 2 function args - success and failure
+            menuFactory.getDishes().query(
+                function(response){
+                    $scope.dishes = response;
+                    $scope.showMenu = true;
+                },
+                function(error){
+                    $scope.message = "Error: "+ response.status + " " + response.statusTest;
+                }
+            );
             
             /*
             $http module
@@ -91,7 +100,16 @@ angular.module('confusionApp')
             $scope.showDish = false;
             $scope.message="Loading ...";
             
-            $scope.dish= menuFactory.getDishes().get({id: parseInt($stateParams.id,10)});
+            $scope.dish= menuFactory.getDishes().get({id: parseInt($stateParams.id,10)})
+            .$promise.then(
+                function(response){
+                    $scope.dish = response;
+                    $scope.showDish = true;
+                },
+                function(error){
+                    $scope.message = "Error: "+ response.status + " " + response.statusTest;
+                }
+            );
 
             /*
             $http module:
@@ -111,7 +129,7 @@ angular.module('confusionApp')
             
         }])
 
-        .controller('DishCommentController', ['$scope', function($scope) {
+        .controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
             
             $scope.mycomment = {rating:5, comment:"", author:"", date:""};
             
@@ -121,6 +139,8 @@ angular.module('confusionApp')
                 console.log($scope.mycomment);
                 
                 $scope.dish.comments.push($scope.mycomment);
+
+                menuFactory.getDishes().update({id: $scope.dish.id}, $scope.dish);
                 
                 $scope.commentForm.$setPristine();
                 
@@ -135,7 +155,16 @@ angular.module('confusionApp')
             $scope.showDish = false;
             $scope.message="Loading ...";
 
-            $scope.dish= menuFactory.getDishes().get({id: 0});
+            $scope.dish= menuFactory.getDishes().get({id: 0})
+            .$promise.then(
+                function(response){
+                    $scope.dish = response;
+                    $scope.showDish = true;
+                },
+                function(error){
+                    $scope.message = "Error: "+ response.status + " " + response.statusTest;
+                }
+            );
             
             
             /*
