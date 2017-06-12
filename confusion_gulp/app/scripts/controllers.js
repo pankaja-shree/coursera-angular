@@ -13,15 +13,14 @@ angular.module('confusionApp')
 
             //using $resource module, $scope.dishes will be empty untill the data is fetched from server. No need of using promises. 
             ///query() takes 2 function args - success and failure
-            menuFactory.getDishes().query(
-                function(response){
+           menuFactory.getDishes().query(
+                function(response) {
                     $scope.dishes = response;
                     $scope.showMenu = true;
                 },
-                function(error){
-                    $scope.message = "Error: "+ error.status + " " + error.statusTest;
-                }
-            );
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                });
             
             /*
             $http module
@@ -100,15 +99,15 @@ angular.module('confusionApp')
             $scope.showDish = false;
             $scope.message="Loading ...";
             
-            $scope.dish= menuFactory.getDishes().get({id: parseInt($stateParams.id,10)})
+            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
             .$promise.then(
-                function(response){
-                    $scope.dish = response;
-                    $scope.showDish = true;
-                },
-                function(response){
-                    $scope.message = "Error: "+ response.status + " " + response.statusTest;
-                }
+                            function(response){
+                                $scope.dish = response;
+                                $scope.showDish = true;
+                            },
+                            function(response) {
+                                $scope.message = "Error: "+response.status + " " + response.statusText;
+                            }
             );
 
             /*
@@ -155,16 +154,16 @@ angular.module('confusionApp')
             $scope.showDish = false;
             $scope.message="Loading ...";
 
-            $scope.dish= menuFactory.getDishes().get({id: 0})
-            .$promise.then(
-                function(response){
-                    $scope.dish = response;
-                    $scope.showDish = true;
-                },
-                function(response){
-                    $scope.message = "Error: "+ response.status + " " + response.statusTest;
-                }
-            );
+            $scope.dish = menuFactory.getDishes().get({id:0})
+                        .$promise.then(
+                            function(response){
+                                $scope.dish = response;
+                                $scope.showDish = true;
+                            },
+                            function(response) {
+                                $scope.message = "Error: "+response.status + " " + response.statusText;
+                            }
+                        );
             
             
             /*
