@@ -19,7 +19,7 @@ angular.module('confusionApp')
                     $scope.showMenu = true;
                 },
                 function(error){
-                    $scope.message = "Error: "+ response.status + " " + response.statusTest;
+                    $scope.message = "Error: "+ error.status + " " + error.statusTest;
                 }
             );
             
@@ -106,7 +106,7 @@ angular.module('confusionApp')
                     $scope.dish = response;
                     $scope.showDish = true;
                 },
-                function(error){
+                function(response){
                     $scope.message = "Error: "+ response.status + " " + response.statusTest;
                 }
             );
@@ -161,7 +161,7 @@ angular.module('confusionApp')
                     $scope.dish = response;
                     $scope.showDish = true;
                 },
-                function(error){
+                function(response){
                     $scope.message = "Error: "+ response.status + " " + response.statusTest;
                 }
             );

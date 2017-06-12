@@ -33,7 +33,7 @@ angular.module('confusionApp')
                 };
     
                  this.getFeatured = function() {
-                    return $http.get(baseURL+"dishes/0");
+                    return $resource(baseURL+"dishes/0");
                 };
                 // implement a function named getPromotion
                 // that returns a selected promotion.
