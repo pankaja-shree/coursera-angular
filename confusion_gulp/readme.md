@@ -39,9 +39,15 @@ npm install grunt-contrib-concat --save-dev
 npm install grunt-contrib-watch --save-dev
 npm install grunt-contrib-connect --save-dev
 
-### Assignment tasks
+### Assignment -3 tasks
 
 * Task 1 - complete services.js file
 * Task 2 - complete controllers.js
 * Task 3 - about.html - media list under corporate leadership using the corporateFactory data
 * Task 4 - home page - using the data from controller.js service and factory
+
+### Assignment 4:
+
++ Fetch promotion info from server
++ Leadership info from server
++ Feedback backend - send feedback to server
