@@ -27,7 +27,7 @@ angular.module('confusionApp')
                 // implement a function named getPromotion
                 // that returns a selected promotion from server.
                 this.getPromotion = function(index) {
-                    return $resource(baseURL+'promotions[0]');
+                    return $resource(baseURL+'promotions/0');
                 };
                         
         }])
@@ -37,16 +37,11 @@ angular.module('confusionApp')
             var corpfac = {};
     
            
-            // Implement two functions, one named getLeaders,
-            // the other named getLeader(index)
-            // Remember this is a factory not a service
-    
-            corpfac.getLeaders = function(){
-                return leadership;
-            };  
+            // Implement a function named getLeaders,
+            // to get leaders array from server
             
-            corpfac.getLeader = function(index){
-                return leadership[index];
+            corpfac.getLeaders = function(){
+                return $resource(baseURL+'leadership/:id', null, {'update': {method: 'PUT'}});
             };
     
             return corpfac;
