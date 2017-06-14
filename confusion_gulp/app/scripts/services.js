@@ -26,13 +26,13 @@ angular.module('confusionApp')
                 };
                 // implement a function named getPromotion
                 // that returns a selected promotion from server.
-                this.getPromotion = function(index) {
+                this.getPromotion = function() {
                     return $resource(baseURL+'promotions/0');
                 };
                         
         }])
 
-        .factory('corporateFactory', function() {
+        .factory('corporateFactory', ['$resource', 'baseURL', function($resource, baseURL) {
     
             var corpfac = {};
     
@@ -46,6 +46,6 @@ angular.module('confusionApp')
     
             return corpfac;
     
-        })
+        }])
 
 ;
