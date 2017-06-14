@@ -150,6 +150,8 @@ angular.module('confusionApp')
             
             $scope.promotion = menuFactory.getPromotion();
 
+            $scope.featured = menuFactory.getFeatured();
+
             $scope.showDish = false;
             $scope.message="Loading ...";
 
@@ -179,7 +181,7 @@ angular.module('confusionApp')
                             );
                             */
             
-            $scope.executive = corporateFactory.getLeader(3);
+            $scope.executive = corporateFactory.getLeader().get({id:3});
         }])
 
         .controller('AboutController',['$scope','$stateParams', 'corporateFactory', function($scope, $stateParams, corporateFactory){
