@@ -197,8 +197,7 @@ angular.module('confusionApp')
             $scope.message = 'Loading...';
             $scope.showLeaders = false;
 
-            $scope.leaders = corporateFactory.getLeaders().get()
-            .$promise.then(
+            corporateFactory.getLeaders().query(
                 function(response){
                     $scope.leaders = response;
                     $scope.showLeaders = true;
