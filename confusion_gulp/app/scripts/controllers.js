@@ -74,11 +74,12 @@ angular.module('confusionApp')
                         
         }])
 
-        .controller('FeedbackController', ['$scope', function($scope) {
+        .controller('FeedbackController', ['$scope', 'feedbackService', function($scope, feedbackService) {
             
             $scope.sendFeedback = function() {
                 
                 console.log($scope.feedback);
+                feedbackService.getFeedback()
                 
                 if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
                     $scope.invalidChannelSelection = true;
