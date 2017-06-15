@@ -206,7 +206,7 @@ angular.module('confusionApp')
                 function(err){
                     $scope.message = 'Error' + err.status + ' ' + err.statusText;
                 }
-            );;
+            );
         }])
 
 ;
