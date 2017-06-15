@@ -21,13 +21,13 @@ angular.module('confusionApp')
                 };
                 */
 
-                 this.getFeatured = function() {
+                this.getFeatured = function() {
                     return $resource(baseURL+"dishes/0");
                 };
                 // implement a function named getPromotion
                 // that returns a selected promotion from server.
                 this.getPromotion = function() {
-                    return $resource(baseURL+'promotions/0');
+                    return $resource(baseURL+"promotions/0");
                 };
                         
         }])
@@ -41,7 +41,7 @@ angular.module('confusionApp')
             // to get leaders array from server
             
             corpfac.getLeaders = function(){
-                return $resource(baseURL+'leadership/:id', null, {'update': {method: 'PUT'}});
+                return $resource(baseURL+"leadership/:id", null, {'update': {method: 'PUT'}});
             };
     
             return corpfac;
