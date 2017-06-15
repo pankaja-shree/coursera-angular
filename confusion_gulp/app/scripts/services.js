@@ -48,4 +48,11 @@ angular.module('confusionApp')
     
         }])
 
+        .service('feedbackService', ['$resource', 'baseURL', function($resource, baseURL) {
+            this.getFeedback = function(){
+                //to post feedback to server
+                 return $resource(baseURL+"feedback", null, {'update': {method: 'PUT'}});
+            };
+        }])
+
 ;
