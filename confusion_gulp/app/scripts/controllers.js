@@ -150,7 +150,8 @@ angular.module('confusionApp')
             $scope.showPromo = false;
             $scope.Promomessage = "Loading ...";
 
-            $scope.promotion = menuFactory.getPromotion().query(
+            menuFactory.getPromotion().get()
+            .$promise.then(
                 function(response){
                     $scope.promotion = response;
                     $scope.showPromo = true;
@@ -159,8 +160,6 @@ angular.module('confusionApp')
                     $scope.Promomessage = 'Error' + err.status + ' ' + err.statusText;
                 }
             );
-
-            $scope.featured = menuFactory.getFeatured();
 
             $scope.showDish = false;
             $scope.message="Loading ...";
@@ -191,7 +190,7 @@ angular.module('confusionApp')
                             );
                             */
             
-            $scope.executive = corporateFactory.getLeader().get({id:3});
+            $scope.executive = corporateFactory.getLeaders().get({id:3});
         }])
 
         .controller('AboutController',['$scope','$stateParams', 'corporateFactory', function($scope, $stateParams, corporateFactory){
