@@ -194,7 +194,19 @@ angular.module('confusionApp')
         }])
 
         .controller('AboutController',['$scope','$stateParams', 'corporateFactory', function($scope, $stateParams, corporateFactory){
-            $scope.leaders = corporateFactory.getLeaders();
+            $scope.message = 'Loading...';
+            $scope.showLeaders = false;
+
+            $scope.leaders = corporateFactory.getLeaders().get()
+            .$promise.then(
+                function(response){
+                    $scope.leaders = response;
+                    $scope.showLeaders = true;
+                },
+                function(err){
+                    $scope.message = 'Error' + err.status + ' ' + err.statusText;
+                }
+            );;
         }])
 
 ;
