@@ -147,8 +147,18 @@ angular.module('confusionApp')
         .controller('IndexController',['$scope', 'menuFactory', 'corporateFactory',  function($scope, menuFactory, corporateFactory) {
             
             //$scope.promotion = menuFactory.getPromotion(0);
-            
-            $scope.promotion = menuFactory.getPromotion();
+            $scope.showPromo = false;
+            $scope.Promomessage = "Loading ...";
+
+            $scope.promotion = menuFactory.getPromotion().query(
+                function(response){
+                    $scope.promotion = response;
+                    $scope.showPromo = true;
+                },
+                function(err){
+                    $scope.Promomessage = 'Error' + err.status + ' ' + err.statusText;
+                }
+            );
 
             $scope.featured = menuFactory.getFeatured();
 
