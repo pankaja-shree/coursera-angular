@@ -79,18 +79,19 @@ angular.module('confusionApp')
             $scope.sendFeedback = function() {
                 
                 console.log($scope.feedback);
-                feedbackService.getFeedback()
                 
                 if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
                     $scope.invalidChannelSelection = true;
                     console.log('incorrect');
                 }
                 else {
+                     console.log($scope.feedback);
+                    feedbackService.getFeedback().save($scope.feedback);
                     $scope.invalidChannelSelection = false;
                     $scope.feedback = {mychannel:"", firstName:"", lastName:"", agree:false, email:"" };
                     $scope.feedback.mychannel="";
                     $scope.feedbackForm.$setPristine();
-                    console.log($scope.feedback);
+                   
                 }
             };
         }])
